@@ -16,9 +16,11 @@
     "start": "cd server && npm start",
     "test": "cd server && npm test"
   },
-  "devDependencies": {
-    "concurrently": "^8.2.2",
+  "dependencies": {
     "vite": "^5.4.10",
     "@vitejs/plugin-react": "^4.3.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
