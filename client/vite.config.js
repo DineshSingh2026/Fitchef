@@ -7,9 +7,11 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     sourcemap: false,
-    rollupOptions: {
-      output: { manualChunks: undefined },
-    },
+    commonjsOptions: { include: [/node_modules/] },
+  },
+  resolve: {
+    preserveSymlinks: false,
+    dedupe: ['react', 'react-dom'],
   },
   server: {
     port: 5173,
