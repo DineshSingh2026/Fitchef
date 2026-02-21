@@ -5,7 +5,7 @@ export const images = {
   about: '/6109571351019457744.jpg',
   aboutSecondary: '/6109571351019457745.jpg',
   featureMenus: '/6109571351019457746.jpg',
-  featureDelivery: '/delivery.jpg', // Replace client/public/delivery.jpg with your delivery-themed image
+  featureDelivery: '/delivery.png',
   featureSourcing: '/6109571351019457748.jpg',
   featureVitality: '/6109571351019457749.jpg',
   banner: '/6109571351019457750.jpg',
