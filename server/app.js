@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import { getPool } from './config/db.js';
 import subscribeRoutes from './routes/subscribeRoutes.js';
 import contactRoutes from './routes/contactRoutes.js';
 import { apiLimiter } from './middleware/rateLimiter.js';
@@ -21,8 +22,22 @@ app.use('/api', apiLimiter);
 app.use('/api', subscribeRoutes);
 app.use('/api', contactRoutes);
 
-app.get('/api/health', (req, res) => {
-  res.json({ success: true, message: 'FitChef API is running.' });
+app.get('/api/health', async (req, res) => {
+  const pool = getPool();
+  let db = 'unconfigured';
+  if (pool) {
+    try {
+      await pool.query('SELECT 1');
+      db = 'ok';
+    } catch (e) {
+      db = 'error';
+    }
+  }
+  res.json({
+    success: true,
+    message: 'FitChef API is running.',
+    db,
+  });
 });
 
 // In production, serve the built React app from client/dist (when using Render Web Service)

@@ -1,4 +1,4 @@
-import pool from '../config/db.js';
+import { getPool } from '../config/db.js';
 import { sendNotifyEmail } from '../lib/mail.js';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -33,6 +33,13 @@ export async function subscribe(req, res, next) {
       });
     }
 
+    const pool = getPool();
+    if (!pool) {
+      return res.status(503).json({
+        success: false,
+        message: 'Subscription is temporarily unavailable. Please try again later.',
+      });
+    }
     const result = await pool.query(
       `INSERT INTO subscribers (id, email) VALUES (gen_random_uuid(), $1) RETURNING id, email, created_at`,
       [email]
@@ -72,6 +79,13 @@ export async function subscribe(req, res, next) {
  */
 export async function getSubscribers(req, res, next) {
   try {
+    const pool = getPool();
+    if (!pool) {
+      return res.status(503).json({
+        success: false,
+        message: 'Database not configured.',
+      });
+    }
     const result = await pool.query(
       `SELECT id, email, created_at FROM subscribers ORDER BY created_at DESC`
     );
