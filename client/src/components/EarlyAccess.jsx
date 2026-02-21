@@ -36,8 +36,12 @@ export default function EarlyAccess() {
       setStatus('error');
       if (res?.status === 409) {
         setMessage('Email already registered.');
+      } else if (res?.status === 503) {
+        setMessage(res?.data?.message || 'Subscription is temporarily unavailable. Please try again later.');
       } else if (res?.data?.message) {
         setMessage(res.data.message);
+      } else if (err.code === 'ECONNABORTED' || err.message === 'Network Error') {
+        setMessage('Connection issue. Please check your network and try again.');
       } else {
         setMessage(ERROR_GENERIC);
       }

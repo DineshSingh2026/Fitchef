@@ -11,10 +11,10 @@ const NOTIFY_EMAIL = 'bodybank.fit369@gmail.com';
  * @returns {Promise<boolean>} true if sent, false if skipped or failed (logged)
  */
 export async function sendNotifyEmail(subject, text, html) {
-  const user = process.env.MAIL_USER;
-  const pass = process.env.MAIL_APP_PASSWORD;
+  const user = process.env.MAIL_USER || process.env.EMAIL_USER;
+  const pass = process.env.MAIL_APP_PASSWORD || process.env.EMAIL_PASS;
   if (!user || !pass) {
-    console.warn('[Mail] MAIL_USER or MAIL_APP_PASSWORD not set; skipping notification email.');
+    console.warn('[Mail] Mail credentials not set (MAIL_USER/MAIL_APP_PASSWORD or EMAIL_USER/EMAIL_PASS); skipping.');
     return false;
   }
 

@@ -13,6 +13,7 @@
     "install:all": "npm install && cd server && npm install && cd ../client && npm install",
     "render:build": "npm run install:all && cd client && npm run build",
     "render : build": "npm run render:build",
+    "start": "cd server && npm start",
     "test": "cd server && npm test"
   },
   "devDependencies": {

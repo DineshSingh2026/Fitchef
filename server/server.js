@@ -1,7 +1,8 @@
 import { app } from './app.js';
 
-const PORT = process.env.PORT || 5000;
+const isProduction = process.env.NODE_ENV === 'production';
+const PORT = isProduction ? (process.env.PORT || 5000) : 5001;
 
 app.listen(PORT, () => {
-  console.log(`[Server] FitChef API listening on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
