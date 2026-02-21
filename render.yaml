@@ -1,8 +1,19 @@
 # Render Blueprint: FitChef
 # https://render.com/docs/blueprint-spec
+# Use ONE of these: Web Service (API + frontend together) OR Static Site (frontend only).
 
-staticSites:
-  - name: fitchef
-    repo: https://github.com/DineshSingh2026/Fitchef.git
-    buildCommand: cd client && NODE_ENV=development npm install && npx vite build
-    staticPublishPath: client/dist
+services:
+  - type: web
+    name: fitchef
+    env: node
+    buildCommand: npm run render:build
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+# Optional: use this instead if you deploy frontend as a separate Static Site
+# staticSites:
+#   - name: fitchef-static
+#     buildCommand: cd client && npm install && npx vite build
+#     staticPublishPath: client/dist

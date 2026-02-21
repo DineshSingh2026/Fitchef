@@ -137,7 +137,17 @@ Serves the built client from `client/dist`. Backend runs separately (e.g. `cd se
 
 ## Deployment (Render)
 
-### Backend (Web Service)
+You can deploy as **one Web Service** (API + frontend together) or as **Web Service + Static Site** (separate). For one URL serving everything, use the Web Service setup below and see **RENDER_WEB_SERVICE.md**.
+
+### Option A: One Web Service (API + frontend)
+
+1. New → **Web Service**, connect repo.
+2. **Build command:** `npm run render:build`
+3. **Start command:** `cd server && npm start`
+4. Set env vars (see RENDER_WEB_SERVICE.md). Run `database/schema.sql` and `database/app_settings.sql` against your DB once.
+5. The same URL serves the React app at `/` and the API at `/api/*`.
+
+### Backend only (Web Service)
 
 1. New → **Web Service**.
 2. Connect repo (or push this folder to GitHub and connect).
