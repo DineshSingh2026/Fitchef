@@ -1,0 +1,8 @@
+# Render Blueprint: FitChef
+# https://render.com/docs/blueprint-spec
+
+staticSites:
+  - name: fitchef
+    repo: https://github.com/DineshSingh2026/Fitchef.git
+    buildCommand: cd client && npm install && npx vite build
+    staticPublishPath: client/dist

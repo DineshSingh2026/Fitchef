@@ -157,7 +157,7 @@ Serves the built client from `client/dist`. Backend runs separately (e.g. `cd se
 1. New → **Static Site**.
 2. Connect same repo.
 3. **Root directory:** leave default.
-4. **Build command:** `cd client && npm install && npm run build`
+4. **Build command:** `cd client && npm install && npm run build` (or `cd client && npm install && npx vite build` if `vite: not found`)
 5. **Publish directory:** `client/dist`
 6. **Environment:**  
    - `VITE_API_URL` = your backend URL + `/api` (e.g. `https://fitchef-api.onrender.com/api`)
