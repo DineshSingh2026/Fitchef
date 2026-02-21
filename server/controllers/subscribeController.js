@@ -70,6 +70,12 @@ export async function subscribe(req, res, next) {
         message: 'Email already registered.',
       });
     }
+    if (err.code === '42P01' || err.code === 'ECONNREFUSED' || err.message?.includes('relation') || err.message?.includes('does not exist')) {
+      return res.status(503).json({
+        success: false,
+        message: 'Subscription is temporarily unavailable. Please try again later.',
+      });
+    }
     next(err);
   }
 }
