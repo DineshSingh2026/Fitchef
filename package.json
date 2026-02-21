@@ -17,6 +17,8 @@
     "test": "cd server && npm test"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "vite": "^5.4.10",
+    "@vitejs/plugin-react": "^4.3.3"
   }
 }
