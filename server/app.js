@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -47,13 +48,15 @@ app.get('/api/health', async (req, res) => {
   });
 });
 
-// In production, serve the built React app from client/dist (when using Render Web Service)
-if (process.env.NODE_ENV === 'production') {
-  const distPath = path.join(__dirname, '../client/dist');
+// Serve the built React app when client/dist exists (production / Render)
+const distPath = path.join(__dirname, '../client/dist');
+if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));
   app.get('*', (req, res, next) => {
     if (req.path.startsWith('/api')) return next();
-    res.sendFile(path.join(distPath, 'index.html'));
+    res.sendFile(path.join(distPath, 'index.html'), (err) => {
+      if (err) next(err);
+    });
   });
 }
 
