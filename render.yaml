@@ -7,7 +7,7 @@ services:
     name: fitchef
     env: node
     buildCommand: npm run render:build
-    startCommand: cd server && npm start
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production

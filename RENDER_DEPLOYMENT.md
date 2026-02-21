@@ -56,7 +56,7 @@ One service serves both API and React build.
 |---------|--------|
 | **Type** | Web Service |
 | **Build Command** | `npm run render:build` |
-| **Start Command** | `cd server && npm start` |
+| **Start Command** | `npm start` |
 | **Root Directory** | *(blank)* |
 | **Publish Directory** | *(not used)* |
 
@@ -75,7 +75,7 @@ Two services: one API, one static frontend.
 | Setting | Value |
 |---------|--------|
 | **Build Command** | `npm install && cd server && npm install` |
-| **Start Command** | `cd server && npm start` |
+| **Start Command** | `npm start` |
 | **Root Directory** | *(blank)* |
 
 - Set `CLIENT_ORIGIN` to your Static Site URL (e.g. `https://fitchef-frontend.onrender.com`).
@@ -97,7 +97,7 @@ Two services: one API, one static frontend.
 | Issue | Cause | Correction |
 |-------|--------|------------|
 | **Missing PORT** | App listens on fixed port (e.g. 5000) | Use `const PORT = process.env.PORT \|\| 5000` and do not set `PORT` on Render. |
-| **Wrong start command** | e.g. `npm run dev` or `nodemon` | Use `cd server && npm start` (runs `node server.js`). |
+| **Wrong start command** | e.g. `npm run dev` or `nodemon` | Use `npm start` (installs server deps then runs `node server.js`). |
 | **Database SSL issue** | Render Postgres requires SSL | Use `ssl: { rejectUnauthorized: false }` in production for `pg` Pool (already configured). |
 | **Incorrect build directory** | Static Site publish path wrong | For Vite: **Publish Directory** = `dist`. For Option A, backend serves `client/dist`; no publish dir. |
 | **Localhost API usage** | Frontend calls `http://localhost:5000` | Use `VITE_API_URL` (or leave empty when backend serves frontend). No hardcoded localhost in code. |
@@ -203,7 +203,7 @@ Fitchef 21 feb/
 
 ## 9. Deployment checklist
 
-- [ ] **Backend:** Web Service created; Build = `npm run render:build`, Start = `cd server && npm start`.
+- [ ] **Backend:** Web Service created; Build = `npm run render:build`, Start = `npm start`.
 - [ ] **Env:** `NODE_ENV=production`, `DATABASE_URL`, `CLIENT_ORIGIN` (if needed), `ADMIN_API_KEY`, `JWT_SECRET`; optional mail vars.
 - [ ] **Database:** Render Postgres created; run `schema.sql` and `app_settings.sql` once.
 - [ ] **No PORT** set in Render (use Render’s default).

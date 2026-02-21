@@ -35,7 +35,7 @@ Use this as the single source of truth to get the site live on Render.
 | **Root Directory** | *(leave blank)* |
 | **Runtime** | **Node** |
 | **Build Command** | `npm run render:build` |
-| **Start Command** | `cd server && npm start` |
+| **Start Command** | `npm start` |
 
 Do **not** add a space in `render:build` (it must be `render:build`, not `render : build`).
 
@@ -120,7 +120,7 @@ psql $DATABASE_URL -f database/app_settings.sql
 | Parameter | Where | Value |
 |-----------|--------|--------|
 | Build Command | Web Service → Build & Deploy | `npm run render:build` |
-| Start Command | Web Service → Build & Deploy | `cd server && npm start` |
+| Start Command | Web Service → Build & Deploy | `npm start` |
 | Root Directory | Web Service → Build & Deploy | *(empty)* |
 | `NODE_ENV` | Environment | `production` |
 | `DATABASE_URL` | Environment | Internal Database URL from Postgres service |

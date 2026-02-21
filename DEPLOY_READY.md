@@ -19,7 +19,7 @@ This project has been tested and is configured for production deployment on Rend
 | Setting | Value |
 |--------|--------|
 | **Build Command** | `npm run render:build` |
-| **Start Command** | `cd server && npm start` |
+| **Start Command** | `npm start` |
 | **Root Directory** | *(leave blank)* |
 
 **Required environment variables:**
